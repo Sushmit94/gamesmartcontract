@@ -2,18 +2,18 @@
 pragma solidity ^0.8.13;
 
 import {Script, console} from "forge-std/Script.sol";
-import {GuessNumberGame} from "../src/GuessNumberGame.sol"; //Ensure this path is correct
+import {Counter} from "../src/Counter.sol"; // Correct import
 
-contract DeployGuessNumber is Script {
+contract DeployCounter is Script {
     function run() external {
         // Start broadcasting transactions
         vm.startBroadcast();
 
-        // Deploy the GuessNumber contract
-        GuessNumberGame guessNumber = new GuessNumberGame();
+        // Deploy the Counter contract
+        Counter counter = new Counter(); // Correct contract name
 
         // Log the deployed contract address
-        console.log("GuessNumber deployed at:", address(guessNumber));
+        console.log("Counter deployed at:", address(counter));
 
         // Stop broadcasting transactions
         vm.stopBroadcast();

@@ -1,19 +1,24 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import {Script, console} from "forge-std/Script.sol";
-import {Counter} from "../src/Counter.sol";
-
-contract CounterScript is Script {
-    Counter public counter;
-
-    function setUp() public {}
-
-    function run() public {
+import "forge-std/Script.sol";
+import "../src/GuessNumberGame.sol";
+import "../src/Counter.sol";
+contract DeployGuessNumberGame is Script {
+    function run() external {
+        // Start broadcasting transactions
         vm.startBroadcast();
 
-        counter = new Counter();
+        // Deploy the GuessNumberGame contract
+        GuessNumberGame game = new GuessNumberGame();
 
+        // Fund the contract with 0.1 ETH (for prizes)
+        payable(address(game)).transfer(0.1 ether);
+
+        // Stop broadcasting transactions
         vm.stopBroadcast();
+
+        // Log the deployed contract address
+        console.log("GuessNumberGame deployed at:", address(game));
     }
 }
